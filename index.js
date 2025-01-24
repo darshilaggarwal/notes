@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const fs = require('fs')
 const port = 3000
 
 app.use(express.json());
@@ -9,7 +10,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname,'public')));
 
 app.get('/', (req, res) => {
-  res.render("index");
+  fs.readdir('./files', (err, files) => {
+    res.render("index" ,{files : files });
+ 
+  })
 })
 
 app.listen(port, () => {
