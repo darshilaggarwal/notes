@@ -16,6 +16,12 @@ app.get('/', (req, res) => {
   })
 })
 
+app.post('/create', (req, res) => {
+  fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt` , req.body.details , (err)=>{
+    res.redirect('./')
+  })  
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
