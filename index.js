@@ -56,6 +56,12 @@ app.post('/create', (req, res) => {
   })  
 })
 
+app.get('/delete/:filename', (req, res) => {
+  fs.unlink(`./files/${req.params.filename}`, (err) => {
+    res.redirect('/');
+  });
+});
+
  
 
 app.listen(port, () => {
