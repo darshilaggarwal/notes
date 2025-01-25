@@ -7,13 +7,13 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <div class="bg-zinc-900 text-white h-screen">
+    <div class="bg-zinc-900 text-white h-screen ">
 
-        <div class="form px-3 py-3 pt-10 ">
+        <div class="form px-3 py-3 pt-10 ml-5">
             <form action="/create" method="post">
-                <input class="block rounded-md bg-zinc-800 py-3 px-8 w-full"
-                type="text" placeholder="title goes here" name="title">
-                <input class="block rounded-md bg-zinc-800 py-7 px-8 w-full mt-4 
+                <input class="block rounded-md bg-zinc-800 py-3 px-8 w-3/4"
+                type="text" placeholder="enter your title" name="title">
+                <input class="block rounded-md bg-zinc-800 py-7 px-8 w-3/4 mt-4 
                 type="text" placeholder="enter your description...." name="details">
                 <button class="px-4 py-2 bg-blue-500 mt-4 rounded-md"
                 > create task</button>
@@ -21,16 +21,20 @@
         </div>
 
         <% if(files.length > 0){ %>
-         <%   files.forEach((val)=>{  %>
+            <div class="flex flex-wrap gap-4 px-3 mt-10 ml-5">
+                <%   files.forEach((val)=>{  %>
+                    <div class="task bg-zinc-800 w-80 h-30 rounded-lg px-3 py-3">
+                        <h1 class="text-3xl"><%=val%></h1>
+                        <div class="flex flex-wrap  gap-10 mt-4 justify-center">
+                        <a class="text-blue-500 inline-block font-light" href="/file/<%= val %>">read file</a>
 
-            <div class="task bg-zinc-800 w-72 h-28 rounded-lg px-3 py-3 mt-8 ml-3">
-                <h1 class=" text-3xl "><%=val%></h1>
-                <a class="text-blue-500 py-10" href="">read more..</a>
-        </div>
-
-         <%   })  %>
-
-      <%  } else{  %>
+                            <a href="/edit/<%= val %>" class="b1 text-yellow-500 ">edit</a>
+                            <a href="/delete/<%= val %>" class="b2 text-red-500 ">delete</a>
+                        </div>
+                    </div>
+                <%   })  %>
+            </div>
+        <%  } else{  %>
 
         <h3 class="text-zinc-500 ml-3 mt-10"
         >no tasks yet...</h3>
